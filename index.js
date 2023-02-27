@@ -1,151 +1,191 @@
+// Import classes
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+
+// Import packages
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+// Directories of files being generated
 const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+const outputPath = path.join(OUTPUT_DIR, "team.html"); // join takes the path segments and applies the correct operating system seperator to the path
 
 const render = require("./src/page-template.js");
 
-
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-// Menu
-const menu =   {
-  message: "Please select a team member to add",
-  type: "list",
-  name: "employee-option",
-  choices: ["Add an Engineer", "Add an Intern", "Finish building the team"],
-}
+const teamArr = [];
 
-// Array of initial questions for user
-const initialQuestions = [
+const managerQuestions = [
   {
-    message: "What is the team manager's name?",
     type: "input",
-    name: "manager-name",
+    message: 'What is the team manager"s name?',
+    name: "name",
   },
   {
-    message: "What is the team manager's Employee ID?",
     type: "input",
-    name: "manager-id",
+    message: 'What is the team manager"s employee ID?',
+    name: "id",
   },
   {
-    message: "What is the team manager's Email?",
     type: "input",
-    name: "manager-email",
-    validate: function (email) {
-  
-      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-
-      if (valid) {
-        console.log("Great job");
-          return true;
-      } else {
-          console.log(".  Please enter a valid email")
-          return false;
-      }
-    },
+    message: 'What is the team manager"s email address?',
+    name: "email",
   },
   {
-    message: "What is the team manager's office number?",
     type: "input",
-    name: "manager-office-number",
+    message: 'What is the team manager"s office number?',
+    name: "officeNumber",
+  },
+  /* {
+    type: "list",
+    message: "What would you like to do?",
+    name: "menu",
+    choices: ["Add an engineer", "Add an intern", "Finish building the team"],
+  }, */
+];
+//console.log(managerQuestions[4].choices[0]);
+const menuQuestion = [
+  {
+    type: "list",
+    message: "What would you like to do?",
+    name: "menu",
+    choices: ["Add an engineer", "Add an intern", "Finish building the team"],
+  },
+];
+//console.log(menuQuestion[0].choices[0]);
+const engineerQuestions = [
+  {
+    type: "input",
+    message: 'What is the engineer"s name?',
+    name: "name",
+  },
+  {
+    type: "input",
+    message: 'What is the engineer"s employee ID?',
+    name: "id",
+  },
+  {
+    type: "input",
+    message: 'What is the engineer"s email address?',
+    name: "email",
+  },
+  {
+    type: "input",
+    message: 'What is the engineer"s GitHub username?',
+    name: "github",
+  },
+  {
+    type: "list",
+    message: "What would you like to do?",
+    name: "menu",
+    choices: ["Add an engineer", "Add an intern", "Finish building the team"],
   },
 ];
 
-// Engineer questions
-const addEngineer = [
+const internQuestions = [
   {
-    message: "What is the Engineer's name?",
     type: "input",
-    name: "engineer-name",
+    message: 'What is the intern"s name?',
+    name: "name",
   },
   {
-    message: "What is the Engineer's ID?",
     type: "input",
-    name: "engineer-id",
+    message: 'What is the intern"s employee ID?',
+    name: "id",
   },
   {
-    message: "What is the Engineer's Email?",
     type: "input",
-    name: "engineer-email",
-    validate: function (email) {
-  
-      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+    message: 'What is the intern"s email address?',
+    name: "email",
+  },
+  {
+    type: "input",
+    message: "What is the intern's school?",
+    name: "school",
+  },
+  {
+    type: "list",
+    message: "What would you like to do?",
+    name: "menu",
+    choices: ["Add an engineer", "Add an intern", "Finish building the team"],
+  },
+];
 
-      if (valid) {
-        console.log("Great job");
-          return true;
-      } else {
-          console.log(".  Please enter a valid email")
-          return false;
-      }
-    },
-  },
-  {
-    message: "What is the Engineer's GitHub username?",
-    type: "input",
-    name: "engineer-github",
-  },
-]
-
-// Intern questions
-const addIntern = [
-  {
-    message: "What is the Intern's name?",
-    type: "input",
-    name: "intern-name",
-  },
-  {
-    message: "What is the Intern's ID?",
-    type: "input",
-    name: "intern-id",
-  },
-  {
-    message: "What is the Intern's Email?",
-    type: "input",
-    name: "intern-email",
-    validate: function (email) {
-  
-      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-
-      if (valid) {
-        console.log("Great job");
-          return true;
-      } else {
-          console.log(".  Please enter a valid email")
-          return false;
-      }
-    },
-  },
-  {
-    message: "What school does the Intern attend?",
-    type: "input",
-    name: "inten-school",
-  },
-]
+/* const team = {
+  //manager: null,
+  manager: [],
+  engineers: [],
+  interns: [],
+}; */
 
 // Function to write information to file
-function writeToFile(fileName, data) {
-  fs.writeFile(fileName, data, (err) => 
-    err ? console.error(err) : console.log("File added to teams.html")
-  );
+async function writeToFile(outputPath, data) {
+  try {
+    // create a directory for the file
+    await fs.promises.mkdir(OUTPUT_DIR, { recursive: true });
+
+    // write the data to the file
+    await fs.promises.writeFile(outputPath, data);
+
+    console.log("File added to team.html");
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 // Function to initialize program
 function init() {
-  inquirer.prompt(initialQuestions)
-    .then((response) => {
-      const teamsPage = render(response);
-      writeToFile("outputPath", teamsPage + "\n", (err) => {
-        console.error("There was an error processing the response. Please try again.");
-      });
+  console.log("Welcome to the team builder!");
+  inquirer.prompt(managerQuestions).then((response) => {
+    let manager = new Manager(
+      response.name,
+      response.id,
+      response.email,
+      response.officeNumber
+    );
+
+    teamArr.push(manager);
+    //console.log(teamArr);
+    writeToFile(outputPath, render(teamArr));
+    console.log(`Added ${manager.name} as the team manager.`);
+
+    inquirer.prompt(menuQuestion).then((response) => {
+      if (menuQuestion[0].choices[0] === "Add an engineer") {
+        inquirer.prompt(engineerQuestions).then((response) => {
+          let engineer = new Engineer(
+            response.name,
+            response.id,
+            response.email,
+            response.github
+          );
+          teamArr.push(engineer);
+          writeToFile(outputPath, render(teamArr));
+          console.log(`Added ${engineer.name} as a team member.`);
+        });
+      } else if (menuQuestion[0].choices[1] === "Add an intern") {
+        inquirer.prompt(internQuestions).then((response) => {
+          let intern = new Intern(
+            response.name,
+            response.id,
+            response.email,
+            response.school
+          );
+          teamArr.push(intern);
+          writeToFile(outputPath, render(teamArr));
+          console.log(`Added ${intern.name} as a team member.`);
+        });
+      } else if (menuQuestion[0].choices[2] === "Finish building the team") {
+        writeToFile(outputPath, render(teamArr));
+        console.log(
+          "You have finished building your team. Head up to team.html to view your team"
+        );
+      }
+      //});
     });
+  });
 }
 
-// Function call to initialize program
 init();
