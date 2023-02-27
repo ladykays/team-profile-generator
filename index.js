@@ -15,7 +15,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html"); // join takes the path se
 const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
-
 const teamArr = [];
 
 const managerQuestions = [
@@ -39,12 +38,6 @@ const managerQuestions = [
     message: 'What is the team manager"s office number?',
     name: "officeNumber",
   },
-  /* {
-    type: "list",
-    message: "What would you like to do?",
-    name: "menu",
-    choices: ["Add an engineer", "Add an intern", "Finish building the team"],
-  }, */
 ];
 //console.log(managerQuestions[4].choices[0]);
 const menuQuestion = [
@@ -77,12 +70,7 @@ const engineerQuestions = [
     message: 'What is the engineer"s GitHub username?',
     name: "github",
   },
-  {
-    type: "list",
-    message: "What would you like to do?",
-    name: "menu",
-    choices: ["Add an engineer", "Add an intern", "Finish building the team"],
-  },
+
 ];
 
 const internQuestions = [
@@ -106,20 +94,9 @@ const internQuestions = [
     message: "What is the intern's school?",
     name: "school",
   },
-  {
-    type: "list",
-    message: "What would you like to do?",
-    name: "menu",
-    choices: ["Add an engineer", "Add an intern", "Finish building the team"],
-  },
+
 ];
 
-/* const team = {
-  //manager: null,
-  manager: [],
-  engineers: [],
-  interns: [],
-}; */
 
 // Function to write information to file
 async function writeToFile(outputPath, data) {
@@ -151,9 +128,14 @@ function init() {
     //console.log(teamArr);
     writeToFile(outputPath, render(teamArr));
     console.log(`Added ${manager.name} as the team manager.`);
+    
+    addTeamMember();
+  });
+}
 
+function addTeamMember() {
     inquirer.prompt(menuQuestion).then((response) => {
-      if (menuQuestion[0].choices[0] === "Add an engineer") {
+      if (response.menu === "Add an engineer") {
         inquirer.prompt(engineerQuestions).then((response) => {
           let engineer = new Engineer(
             response.name,
@@ -164,8 +146,9 @@ function init() {
           teamArr.push(engineer);
           writeToFile(outputPath, render(teamArr));
           console.log(`Added ${engineer.name} as a team member.`);
+          addTeamMember();
         });
-      } else if (menuQuestion[0].choices[1] === "Add an intern") {
+      } else if (response.menu === "Add an intern") {
         inquirer.prompt(internQuestions).then((response) => {
           let intern = new Intern(
             response.name,
@@ -176,16 +159,18 @@ function init() {
           teamArr.push(intern);
           writeToFile(outputPath, render(teamArr));
           console.log(`Added ${intern.name} as a team member.`);
+          addTeamMember();
         });
-      } else if (menuQuestion[0].choices[2] === "Finish building the team") {
+      } else if (response.menu === "Finish building the team") {
         writeToFile(outputPath, render(teamArr));
         console.log(
           "You have finished building your team. Head up to team.html to view your team"
         );
+        return;
       }
-      //});
+
     });
-  });
+
 }
 
 init();
