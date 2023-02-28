@@ -15,14 +15,14 @@
   * [Tests](#tests)
   
  
-  ## Technologies Used
+  ## Technologies
   * HTML  
-* CSS  
-* JavaScript  
-* Bootstrap  
-* Node.js  
-* NPM  
-* Other
+  * CSS  
+  * JavaScript  
+  * Bootstrap  
+  * Node.js  
+  * NPM  
+  * Jest
   
   ## Installation 
   To ensure a smooth installation of this app, please follow the instructions carefully and in order. Note that this is a command line application, so all commands must be entered in the command line (if on Windows) or Terminal (if on Mac). Before proceeding, please ensure that Node.js and npm are installed on your local computer. [Click](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for more information on installation. 
@@ -45,7 +45,7 @@
 
   ## Demo
   [Click Me](https://drive.google.com/file/d/1BWwmQdLfkAXyHmobS2018yoWewx1jocV/view) or the demo below to see the full walkthrough video of the application.
-  
+
   [![App Demo](./assets/images/demo.gif)](https://drive.google.com/file/d/1BWwmQdLfkAXyHmobS2018yoWewx1jocV/view)
 
   ## License
