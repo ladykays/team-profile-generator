@@ -96,18 +96,27 @@ module.exports = team => {
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c502137733.js"></script>
+    <style>
+        a:link, a:vis,  a:hover, a:active, a:focus {
+            text-decoration: none;
+            color: #212529;
+        }
+        a:hover {
+            color: #17a2b8;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container-fluid bg-secondary">
         <div class="row  bg-info">
-            <div class="col-12 jumbotron mb-3 team-heading">
+            <div class="col-12 jumbotron mb-1 team-heading">
                 <h1 class="text-center text-info">My Team</h1>
             </div>
         </div>
     </div>
     <div class="container mx-auto mt-5">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="team-area sm-col-1 md-col-3 lg-col-4 d-flex justify-content-center flex-wrap">
                 ${generateTeam(team)}
             </div>

@@ -27,6 +27,15 @@ const managerQuestions = [
     type: "input",
     message: "What is the team Manager's employee ID?",
     name: "id",
+    validate(number) {
+      if (isNaN(number)) {
+        console.log(" Please enter a numerical value");
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
   },
   {
     type: "input",
@@ -39,7 +48,7 @@ const managerQuestions = [
       if (valid) {
           return true;
       } else {
-          console.log(".  Please enter a valid email")
+          console.log("  Please enter a valid email")
           return false;
       }
     },
@@ -48,6 +57,15 @@ const managerQuestions = [
     type: "input",
     message: "What is the team Manager's office number?",
     name: "officeNumber",
+    validate(number) {
+      if (isNaN(number)) {
+        console.log(" Please enter valid office number");
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
   },
 ];
 //console.log(managerQuestions[4].choices[0]);
@@ -70,6 +88,15 @@ const engineerQuestions = [
     type: "input",
     message: "What is the Engineer's employee ID?",
     name: "id",
+    validate(number) {
+      if (isNaN(number)) {
+        console.log(" Please enter a numerical value");
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
   },
   {
     type: "input",
@@ -82,7 +109,7 @@ const engineerQuestions = [
       if (valid) {
           return true;
       } else {
-          console.log(".  Please enter a valid email")
+          console.log(" Please enter a valid email")
           return false;
       }
     },
@@ -105,6 +132,15 @@ const internQuestions = [
     type: "input",
     message: "What is the Intern's employee ID?",
     name: "id",
+    validate(number) {
+      if (isNaN(number)) {
+        console.log(" Please enter a numerical value");
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
   },
   {
     type: "input",
@@ -117,7 +153,7 @@ const internQuestions = [
       if (valid) {
           return true;
       } else {
-          console.log(".  Please enter a valid email")
+          console.log(" Please enter a valid email")
           return false;
       }
     },

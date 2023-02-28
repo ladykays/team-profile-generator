@@ -41,10 +41,12 @@
   To run the application, open Terminal or the command line and type node index.js. You will be prompted with a series of questions; use the up and down arrow keys to navigate multiple-choice questions and hit the space bar to make a selection before hitting enter. After all questions have been answered, you will be notified that the file has been saved to README.md. Open the file and you will see that your README file has been generated.
 
   ## Screenshot
-  ![Screenshot](./images/screenshot.png)
+  ![Screenshot](./assets/images/screenshot.png)
 
   ## Demo
-  [![App Demo](./images/trim.gif)](https://drive.google.com/file/d/1o7pF_FvHNZA8tW7eWhvBgTexs5GCoFPt/view)
+  [Click Me](https://drive.google.com/file/d/1BWwmQdLfkAXyHmobS2018yoWewx1jocV/view) or the demo below to see the full walkthrough video of the application.
+  
+  [![App Demo](./assets/images/demo.gif)](https://drive.google.com/file/d/1BWwmQdLfkAXyHmobS2018yoWewx1jocV/view)
 
   ## License
   This project is licensed under the MIT License. [View licence](https://opensource.org/licenses/MIT)
@@ -68,4 +70,5 @@
     ```
       npm run test 
     ```  
+    ![Screenshot](./assets/images/test-screenshot.png)
 
