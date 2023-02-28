@@ -20,22 +20,22 @@ const teamArr = [];
 const managerQuestions = [
   {
     type: "input",
-    message: 'What is the team manager"s name?',
+    message: "What is the team Manager's name?",
     name: "name",
   },
   {
     type: "input",
-    message: 'What is the team manager"s employee ID?',
+    message: "What is the team Manager's employee ID?",
     name: "id",
   },
   {
     type: "input",
-    message: 'What is the team manager"s email address?',
+    message: "What is the team Manager's email address?",
     name: "email",
   },
   {
     type: "input",
-    message: 'What is the team manager"s office number?',
+    message: "What is the team Manager's office number?",
     name: "officeNumber",
   },
 ];
@@ -45,29 +45,29 @@ const menuQuestion = [
     type: "list",
     message: "What would you like to do?",
     name: "menu",
-    choices: ["Add an engineer", "Add an intern", "Finish building the team"],
+    choices: ["Add an Engineer", "Add an Intern", "Finish building the team"],
   },
 ];
 //console.log(menuQuestion[0].choices[0]);
 const engineerQuestions = [
   {
     type: "input",
-    message: 'What is the engineer"s name?',
+    message: "What is the Engineer's name?",
     name: "name",
   },
   {
     type: "input",
-    message: 'What is the engineer"s employee ID?',
+    message: "What is the Engineer's employee ID?",
     name: "id",
   },
   {
     type: "input",
-    message: 'What is the engineer"s email address?',
+    message: "What is the Engineer's email address?",
     name: "email",
   },
   {
     type: "input",
-    message: 'What is the engineer"s GitHub username?',
+    message: "What is the Engineer's GitHub username?",
     name: "github",
   },
 
@@ -76,22 +76,22 @@ const engineerQuestions = [
 const internQuestions = [
   {
     type: "input",
-    message: 'What is the intern"s name?',
+    message: "What is the Intern's name?",
     name: "name",
   },
   {
     type: "input",
-    message: 'What is the intern"s employee ID?',
+    message: "What is the Intern's employee ID?",
     name: "id",
   },
   {
     type: "input",
-    message: 'What is the intern"s email address?',
+    message: "What is the Intern's email address?",
     name: "email",
   },
   {
     type: "input",
-    message: "What is the intern's school?",
+    message: "What is the Intern's school?",
     name: "school",
   },
 
@@ -135,7 +135,7 @@ function init() {
 
 function addTeamMember() {
     inquirer.prompt(menuQuestion).then((response) => {
-      if (response.menu === "Add an engineer") {
+      if (response.menu === "Add an Engineer") {
         inquirer.prompt(engineerQuestions).then((response) => {
           let engineer = new Engineer(
             response.name,
@@ -148,7 +148,7 @@ function addTeamMember() {
           console.log(`Added ${engineer.name} as a team member.`);
           addTeamMember();
         });
-      } else if (response.menu === "Add an intern") {
+      } else if (response.menu === "Add an Intern") {
         inquirer.prompt(internQuestions).then((response) => {
           let intern = new Intern(
             response.name,

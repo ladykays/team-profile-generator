@@ -1,13 +1,14 @@
 // creates the team
+
 const generateTeam = team => {
 
     // creates the manager html
     const generateManager = manager => {
         return `
-        <div class="card employee-card">
-        <div class="card-header">
-            <h2 class="card-title">${manager.getName()}</h2>
-            <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
+        <div class="card employee-card shadow-lg p-3 mb-5 bg-white rounded mr-2 ml-2" style="width: 18rem;">
+        <div class="card-header bg-info">
+            <h2 class="card-title text-light">${manager.getName()}</h2>
+            <h3 class="card-title text-light"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
         </div>
         <div class="card-body">
             <ul class="list-group">
@@ -23,10 +24,10 @@ const generateTeam = team => {
     // creates the html for engineers
     const generateEngineer = engineer => {
         return `
-        <div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">${engineer.getName()}</h2>
-        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
+        <div class="card employee-card shadow-lg p-3 mb-5 bg-white rounded mr-2 ml-2" style="width: 18rem;">
+    <div class="card-header bg-info">
+        <h2 class="card-title text-light">${engineer.getName()}</h2>
+        <h3 class="card-title text-light"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
     </div>
     <div class="card-body">
         <ul class="list-group">
@@ -42,10 +43,10 @@ const generateTeam = team => {
     // creates the html for interns
     const generateIntern = intern => {
         return `
-        <div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">${intern.getName()}</h2>
-        <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
+        <div class="card employee-card shadow-lg p-3 mb-5 bg-white rounded mr-2 ml-2" style="width: 18rem;">
+    <div class="card-header bg-info">
+        <h2 class="card-title text-light">${intern.getName()}</h2>
+        <h3 class="card-title text-light"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
     </div>
     <div class="card-body">
         <ul class="list-group">
@@ -98,16 +99,16 @@ module.exports = team => {
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid bg-secondary">
+        <div class="row  bg-info">
             <div class="col-12 jumbotron mb-3 team-heading">
-                <h1 class="text-center">My Team</h1>
+                <h1 class="text-center text-info">My Team</h1>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container mx-auto mt-5">
         <div class="row">
-            <div class="team-area col-12 d-flex justify-content-center">
+            <div class="team-area sm-col-1 md-col-3 lg-col-4 d-flex justify-content-center flex-wrap">
                 ${generateTeam(team)}
             </div>
         </div>
