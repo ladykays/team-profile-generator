@@ -1,6 +1,7 @@
 # Team Profile Generator
 
   ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+  ![Factorio Mod Portal factorio versions](https://img.shields.io/factorio-mod-portal/factorio-version/rso-mod?color=brightgreen&label=Version&logo=kays)
 
   ## Description
   This is a Node CLI application which requests information about the members of a software engineering team and generates an HTML file which displays the information. Each team can consist of a Manager, any  number of Engineers and any number of Interns. The HTML file is styled using Bootstrap, CSS and Font Awesome. The project demonstrates the use of Object Oriented Programming (OOP) and Test Driven Development (TDD) using Jest.
