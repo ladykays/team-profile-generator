@@ -32,6 +32,17 @@ const managerQuestions = [
     type: "input",
     message: "What is the team Manager's email address?",
     name: "email",
+    validate: function (email) {
+    
+      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+      if (valid) {
+          return true;
+      } else {
+          console.log(".  Please enter a valid email")
+          return false;
+      }
+    },
   },
   {
     type: "input",
@@ -64,6 +75,17 @@ const engineerQuestions = [
     type: "input",
     message: "What is the Engineer's email address?",
     name: "email",
+    validate: function (email) {
+    
+      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+      if (valid) {
+          return true;
+      } else {
+          console.log(".  Please enter a valid email")
+          return false;
+      }
+    },
   },
   {
     type: "input",
@@ -88,6 +110,17 @@ const internQuestions = [
     type: "input",
     message: "What is the Intern's email address?",
     name: "email",
+    validate: function (email) {
+    
+      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+      if (valid) {
+          return true;
+      } else {
+          console.log(".  Please enter a valid email")
+          return false;
+      }
+    },
   },
   {
     type: "input",
